@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Lamrot Properties</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      height: auto;
+    }
+
+    body {
+      background-color: #0b0c10; 
+      color: #ffffff;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      overflow-x: hidden; 
+      width: 100%;
+      height: auto;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* NAVBAR CODE */
+    .navbar {
+      background-color: #0b0c10;
+      border-bottom: 1px solid rgba(197, 168, 128, 0.2); 
+      padding: 18px 20px;
+      position: sticky; 
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+    }
+
+    .logo-brand {
+      display: flex;
+      align-items: center;
+      gap: 30px; 
+      flex: 1;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .social-icons a {
+      color: #c5a880; 
+      text-decoration: none;
+      font-size: 14px;
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(197, 168, 128, 0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+
+    .social-icons a:hover {
+      background-color: #c5a880;
+      color: #0b0c10;
+    }
+
+    /* Centering layout rule for Desktop */
+    .logo-text {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      pointer-events: auto;
+      z-index: 5;
+    }
+
+    .logo-text h1 {
+      font-size: 22px; 
+      letter-spacing: 4px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1;
+    }
+
+    .logo-text h2 {
+      font-size: 11px;
+      letter-spacing: 5px;
+      color: #c5a880; 
+      font-weight: 400;
+      margin-top: 5px;
+    }
+
+    .menu-toggle {
+      display: none !important;
+    }
+
+    /* Desktop Navigation Alignment */
+    .nav-links {
+      display: flex;
+      flex: 1;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #ffffff;
+      text-decoration: none;
+      margin-left: 30px;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #c5a880;
+    }
+
+    /* Mobile Hamburger lines */
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background-color: #c5a880;
+      border-radius: 2px;
+    }
+
+    .social-icons-mobile {
+      display: none;
+    }
+
+    /* HERO SECTION */
+    .hero-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 20px 80px 20px; 
+      display: flex;
+      flex-direction: row; 
+      align-items: center;
+      justify-content: space-between;
+      gap: 50px;
+      flex-shrink: 0;
+    }
+
+    .hero-image-container {
+      position: relative;
+      border: 1px solid rgba(197, 168, 128, 0.3);
+      padding: 12px;
+      border-radius: 16px;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .hero-img {
+      width: 320px; 
+      height: auto;
+      border-radius: 12px;
+      display: block;
+    }
+
+    .hero-content {
+      flex: 1;
+      max-width: 650px;
+    }
+
+    .main-headline {
+      font-size: 34px; 
+      line-height: 1.5;
+      margin-bottom: 25px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .quote-box {
+      border: 1px solid rgba(197, 168, 128, 0.2);
+      padding: 20px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.01);
+    }
+
+    .quote-text {
+      font-style: italic;
+      color: #c5a880;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* SECTION TITLE BASICS */
+    .section-title {
+      font-size: 22px;
+      color: #c5a880;
+      letter-spacing: 2px;
+      text-align: center;
+      margin-bottom: 45px;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    /* PROPERTY LISTINGS */
+    .listings-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 20px;
+      display: block;
+      height: auto;
+      clear: both;
+    }
+
+    .listings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 30px;
+      width: 100%;
+      height: auto;
+    }
+
+    .property-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(197, 168, 128, 0.15);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: auto;
+    }
+
+    .property-img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .property-info {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      height: auto;
+    }
+
+    .property-title {
+      font-size: 19px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+    }
+
+    .property-details {
+      font-size: 14px;
+      color: #d1d1d1;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .property-specs {
+      display: flex;
+      justify-content: space-between;
+      background: rgba(197, 168, 128, 0.05);
+      border: 1px solid rgba(197, 168, 128, 0.1);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #c5a880;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    .action-buttons-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .btn-action {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 5px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: all 0.2s ease;
+    }
+
+    .btn-call {
+      background-color: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+    }
+    .btn-call:hover {
+      background-color: #ffffff;
+      color: #0b0c10;
+    }
+
+    .btn-email {
+      background-color: rgba(197, 168, 128, 0.05);
+      border: 1px solid rgba(197, 168, 128, 0.3);
+      color: #c5a880;
+    }
+    .btn-email:hover {
+      background-color: #c5a880;
+      color: #0b0c10;
+    }
+
+    .btn-telegram {
+      background-color: rgba(36, 161, 222, 0.08);
+      border: 1px solid rgba(36, 161, 222, 0.4);
+      color: #24a1de;
+    }
+    .btn-telegram:hover {
+      background-color: #24a1de;
+      color: #ffffff;
+    }
+
+    .detail-toggle-chk {
+      display: none;
+    }
+
+    .lbl-toggle-details {
+      display: block;
+      text-align: center;
+      padding: 10px;
+      font-size: 13px;
+      color: #c5a880;
+      border: 1px dashed rgba(197, 168, 128, 0.3);
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.3s;
+    }
+    .lbl-toggle-details:hover {
+      background: rgba(197, 168, 128, 0.05);
+    }
+
+    .expandable-details-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+    }
+
+    .inner-details-box {
+      padding: 15px;
+      border-top: 1px solid rgba(197, 168, 128, 0.1);
+      margin-top: 10px;
+    }
+
+    .detail-price-tag {
+      font-size: 18px;
+      color: #c5a880;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .deep-specs-list {
+      font-size: 13px;
+      color: #a3a3a3;
+      list-style: none;
+      line-height: 1.6;
+    }
+
+    .detail-toggle-chk:checked ~ .expandable-details-content {
+      max-height: 500px; 
+    }
+
+    /* ABOUT US SECTION */
+    .about-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 20px;
+      display: block;
+      height: auto;
+      clear: both;
+    }
+
+    .about-split-container {
+      display: flex;
+      align-items: stretch;
+      gap: 40px;
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid rgba(197, 168, 128, 0.15);
+      border-radius: 12px;
+      padding: 40px;
+    }
+
+    .about-column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .about-column h4 {
+      font-size: 16px;
+      color: #c5a880;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .about-column p {
+      line-height: 1.8;
+      color: #d1d1d1;
+      font-size: 14px;
+    }
+
+    .about-divider {
+      width: 1px;
+      background: rgba(197, 168, 128, 0.25);
+      align-self: inherit;
+    }
+
+    /* FOOTER AND CONTACTS */
+    .main-footer {
+      background-color: #06070a;
+      border-top: 1px solid rgba(197, 168, 128, 0.15);
+      padding: 40px 20px;
+      display: block;
+      height: auto;
+      margin-top: auto; 
+      clear: both;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .footer-contacts {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 15px;
+      transition: color 0.3s;
+    }
+
+    .contact-item i {
+      color: #c5a880;
+    }
+
+    .contact-item:hover {
+      color: #c5a880;
+    }
+
+    .footer-logo-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 5px;
+    }
+
+    .lp-monogram {
+      font-size: 32px;
+      font-weight: 800;
+      color: #c5a880;
+      letter-spacing: -2px;
+      line-height: 1;
+      font-family: 'Times New Roman', Times, serif;
+      border-bottom: 1px solid rgba(197, 168, 128, 0.4);
+      padding-bottom: 2px;
+    }
+
+    .footer-credits {
+      font-size: 11px;
+      color: #555555;
+      letter-spacing: 1px;
+    }
+
+    /* ==========================================
+       RESPONSIVE MEDIA QUERIES (MOBILE FIXES)
+       ========================================== */
+    @media only screen and (max-width: 850px) {
+      .navbar {
+        padding: 15px 15px;
+      }
+      
+      .nav-container {
+        display: flex;
+        justify-content: flex-start; 
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+      }
+      
+      .logo-brand {
+        display: none !important; 
+      }
+      
+      .logo-text {
+        position: static !important;
+        transform: none !important;
+        text-align: left;
+        margin-right: 15px; 
+      }
+
+      .logo-text h1 {
+        font-size: 18px;
+        letter-spacing: 2px;
+      }
+
+      .logo-text h2 {
+        font-size: 10px;
+        letter-spacing: 3px;
+        margin-top: 4px;
+      }
+
+      .hamburger {
+        display: flex !important;
+        z-index: 100;
+        order: -1; 
+      }
+
+      .social-icons-mobile {
+        display: flex !important;
+        gap: 8px;
+        margin-left: auto; 
+      }
+
+      .social-icons-mobile a {
+        color: #c5a880; 
+        text-decoration: none;
+        font-size: 13px;
+        width: 28px;
+        height: 28px;
+        border: 1px solid rgba(197, 168, 128, 0.3);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .nav-links {
+        display: none !important;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #0b0c10;
+        border-bottom: 1px solid rgba(197, 168, 128, 0.2);
+        padding: 20px 0;
+        text-align: center;
+        z-index: 99;
+      }
+
+      .nav-links a {
+        margin: 15px 0;
+        display: block;
+        font-size: 16px;
+        letter-spacing: 2px;
+        margin-left: 0;
+      }
+
+      .menu-toggle:checked ~ .nav-links {
+        display: flex !important;
+      }
+
+      .hero-section {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 60px;
+        gap: 30px;
+      }
+
+      .main-headline {
+        font-size: 26px;
+      }
+      
+      .hero-img {
+        max-width: 280px;
+      }
+
+      .listings-section {
+        padding: 40px 15px;
+        height: auto;
+      }
+
+      .listings-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        height: auto;
+      }
+
+      .about-split-container {
+        flex-direction: column;
+        padding: 24px 20px;
+        gap: 25px;
+      }
+
+      .about-divider {
+        width: 100%;
+        height: 1px;
+      }
+
+      .footer-container {
+        flex-direction: column;
+        gap: 25px;
+        text-align: center;
+      }
+
+      .footer-contacts {
+        align-items: center;
+      }
+
+      .footer-logo-brand {
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="nav-container">
+      
+      <div class="logo-brand">
+        <div class="social-icons">
+          <a href="https://facebook.com/share/1CpreHHXre/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/lamrot_property?igsh=dTY0MHNrZGF3Y2Zt" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.tiktok.com/@lamrottemer_properties?_r=1&_t=ZS-96PNmmPOxvA" target="_blank"><i class="fab fa-tiktok"></i></a>
+          <a href="https://t.me/LamrotHabtamu" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+        </div>
+      </div>
+
+      <div class="logo-text">
+        <h1>LAMROT</h1>
+        <h2>PROPERTIES</h2>
+      </div>
+
+      <input type="checkbox" id="menu-toggle" class="menu-toggle">
+      
+      <label for="menu-toggle" class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+
+      <div class="social-icons-mobile">
+        <a href="https://facebook.com/share/1CpreHHXre/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/lamrot_property?igsh=dTY0MHNrZGF3Y2Zt" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.tiktok.com/@lamrottemer_properties?_r=1&_t=ZS-96PNmmPOxvA" target="_blank"><i class="fab fa-tiktok"></i></a>
+        <a href="https://t.me/LamrotHabtamu" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+      </div>
+
+      <nav class="nav-links">
+        <label for="menu-toggle"><a href="#home">HOME</a></label>
+        <label for="menu-toggle"><a href="#listings">LISTINGS</a></label>
+        <label for="menu-toggle"><a href="#about">ABOUT US</a></label>
+      </nav>
+      
+    </div>
+  </header>
+
+  <main class="hero-section" id="home">
+    <div class="hero-image-container">
+      <img src="headshot.jpg" alt="Lamrot Properties Professional" class="hero-img">
+    </div>
+    
+    <div class="hero-content">
+      <h2 class="main-headline">ጥራት ያላቸው የመኖሪያና የንግድ ቤቶችን ዛሬውኑ ያግኙ!</h2>
+      <div class="quote-box">
+        <p class="quote-text">"Philosophy is the philosophy of ensuring the luxury of your life."</p>
+      </div>
+    </div>
+  </main>
+
+  <section class="listings-section" id="listings">
+    <h3 class="section-title">Our Properties</h3>
+    <div class="listings-grid">
+      
+      <div class="property-card">
+        <img src="property1.jpg" alt="Awale Three Bedroom Apartment" class="property-img">
+        <div class="property-info">
+          <h4 class="property-title">Awale - Three Bedroom Apartment</h4>
+          <p class="property-details">This three bedroom apartment for sale in Ethiopia offers a spacious and thoughtful design for premium luxury living space.</p>
+          
+          <div class="property-specs">
+            <span><i class="fas fa-bed"></i> Bed: 3</span>
+            <span><i class="fas fa-bath"></i> Bath: 2</span>
+            <span><i class="fas fa-expand-arrows-alt"></i> Size: 157 m²</span>
+          </div>
+
+          <div class="action-buttons-row">
+            <a href="tel:+251922785816" class="btn-action btn-call"><i class="fas fa-phone-alt"></i> Call</a>
+            <a href="mailto:lamrothabtamu2524@gmail.com?subject=Inquiry: Awale 3-Bed Apartment" class="btn-action btn-email"><i class="fas fa-envelope"></i> Email</a>
+            <a href="https://t.me/LamrotHabtamu" target="_blank" class="btn-action btn-telegram"><i class="fab fa-telegram-plane"></i> Telegram</a>
+          </div>
+
+          <input type="checkbox" id="toggle-p1" class="detail-toggle-chk">
+          <label for="toggle-p1" class="lbl-toggle-details">View Price & Details</label>
+          <div class="expandable-details-content">
+            <div class="inner-details-box">
+              <p class="detail-price-tag">Contact for Price</p>
+              <ul class="deep-specs-list">
+                <li>• High-floor scenic window views</li>
+                <li>• 24/7 Dedicated security entry</li>
+                <li>• Standby generator infrastructure</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="property-card">
+        <img src="property2.jpg" alt="Piassa Two Bedroom Apartment" class="property-img">
+        <div class="property-info">
+          <h4 class="property-title">Piassa - Two Bedroom Apartment</h4>
+          <p class="property-details">This two bedroom apartment for sale in Ethiopia provides a well-designed & comfortable modern living space in a prime metropolitan hub.</p>
+          
+          <div class="property-specs">
+            <span><i class="fas fa-bed"></i> Bed: 2</span>
+            <span><i class="fas fa-bath"></i> Bath: 1</span>
+            <span><i class="fas fa-expand-arrows-alt"></i> Size: 87 m²</span>
+          </div>
+
+          <div class="action-buttons-row">
+            <a href="tel:+251922785816" class="btn-action btn-call"><i class="fas fa-phone-alt"></i> Call</a>
+            <a href="mailto:lamrothabtamu2524@gmail.com?subject=Inquiry: Piassa 2-Bed Apartment" class="btn-action btn-email"><i class="fas fa-envelope"></i> Email</a>
+            <a href="https://t.me/LamrotHabtamu" target="_blank" class="btn-action btn-telegram"><i class="fab fa-telegram-plane"></i> Telegram</a>
+          </div>
+
+          <input type="checkbox" id="toggle-p2" class="detail-toggle-chk">
+          <label for="toggle-p2" class="lbl-toggle-details">View Price & Details</label>
+          <div class="expandable-details-content">
+            <div class="inner-details-box">
+              <p class="detail-price-tag">Contact for Price</p>
+              <ul class="deep-specs-list">
+                <li>• Located in historic vibrant Piassa</li>
+                <li>• Easy transit accessibility</li>
+                <li>• Secure undercover vehicle space</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="property-card">
+        <img src="property3.jpg" alt="Luxury Property Showcase" class="property-img">
+        <div class="property-info">
+          <h4 class="property-title">Bole - Premium Executive Suite</h4>
+          <p class="property-details">Exclusive high-tier commercial or residential option optimized for high-end styling preferences, modern smart layouts, and exceptional building security.</p>
+          
+          <div class="property-specs">
+            <span><i class="fas fa-bed"></i> Bed: 4</span>
+            <span><i class="fas fa-bath"></i> Bath: 3</span>
+            <span><i class="fas fa-expand-arrows-alt"></i> Size: 210 m²</span>
+          </div>
+
+          <div class="action-buttons-row">
+            <a href="tel:+251922785816" class="btn-action btn-call"><i class="fas fa-phone-alt"></i> Call</a>
+            <a href="mailto:lamrothabtamu2524@gmail.com?subject=Inquiry: Bole Executive Suite" class="btn-action btn-email"><i class="fas fa-envelope"></i> Email</a>
+            <a href="https://t.me/LamrotHabtamu" target="_blank" class="btn-action btn-telegram"><i class="fab fa-telegram-plane"></i> Telegram</a>
+          </div>
+
+          <input type="checkbox" id="toggle-p3" class="detail-toggle-chk">
+          <label for="toggle-p3" class="lbl-toggle-details">View Price & Details</label>
+          <div class="expandable-details-content">
+            <div class="inner-details-box">
+              <p class="detail-price-tag">Contact for Price</p>
+              <ul class="deep-specs-list">
+                <li>• Ultra-premium luxury finishes</li>
+                <li>• Integrated smart control options</li>
+                <li>• Panoramic high-rise city overview</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="about-section" id="about">
+    <h3 class="section-title">About Us</h3>
+    <div class="about-split-container">
+      
+      <div class="about-column">
+        <h4>English Version</h4>
+        <p>Welcome to Lamrot Properties. We specialize in providing high-end, premium real estate choices tailored to match an exceptional standard of living. Our absolute dedication ensures that whether you are looking for luxurious residential options or a premium business office layout, we source spaces that reflect luxury, functionality, and outstanding architectural craftsmanship.</p>
+      </div>
+
+      <div class="about-divider"></div>
+
+      <div class="about-column">
+        <h4>Amharic Version</h4>
+        <p>ወደ ላምሮት ፕሮፐርቲስ በደህና መጡ። እኛ ከፍተኛ ደረጃ ያላቸውን እና የቅንጦት መኖሪያ ቤቶችን እንዲሁም ምቹ የንግድ ቢሮዎችን በማቅረብ ላይ እንሰራለን። የእርስዎ ፍላጎት የቅንጦት መኖሪያም ሆነ ዘመናዊ የንግድ ቦታ፣ የእርስዎን የአኗኗር ዘይቤ የሚመጥኑ፣ ጥራታቸውን የጠበቁ እና አስደናቂ የስነ-ህንፃ ጥበብ ያረፈባቸውን ቦታዎች በጥንቃቄ መርጠን እናቀርባለን።</p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="main-footer">
+    <div class="footer-container">
+      
+      <div class="footer-contacts">
+        <a href="tel:+251922785816" class="contact-item">
+          <i class="fas fa-phone-alt"></i> +251 922 785 816
+        </a>
+        <a href="mailto:lamrothabtamu2524@gmail.com" class="contact-item">
+          <i class="fas fa-envelope"></i> lamrothabtamu2524@gmail.com
+        </a>
+      </div>
+
+      <div class="footer-logo-brand">
+        <div class="lp-monogram">LP</div>
+        <p class="footer-credits">&copy; 2026 LAMROT PROPERTIES. All Rights Reserved.</p>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>
